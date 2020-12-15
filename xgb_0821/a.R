@@ -22,3 +22,9 @@ t2 <-  datasets::Titanic %>%
 t2$pred <- 1/(1+exp(-xgboost:::predict.xgb.Booster(xgb_0821,tdata,type="response"))) 
 
 xgboost::xgb.save(model = xgb_0821,fname = "../xgb_0821.file")
+
+#experimant with saving as raw  ???
+raw <- xgboost::xgb.save.raw(model = xgb_0821)
+(length_raw <- length(raw))
+#20989
+writeBin(raw,"../xgb_0821.rawfile")

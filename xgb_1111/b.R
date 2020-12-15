@@ -21,3 +21,7 @@ xgb_1111 <- xgb.load("../xgb_0821.file")
   # [22:36:39] amalgamation/../src/objective/./regression_loss.h:89: Check failed: base_score > 0.0f && base_score < 1.0f: base_score must be in (0,1) for logistic loss, got: -0
 t2$pred <- 1/(1+exp(-xgboost:::predict.xgb.Booster(xgb_1111,tdata,type="response"))) 
 
+#try to load as raw ????
+xgb_1111 <- xgb.load(readBin("../xgb_0821.rawfile",what=raw(),n=20989)) 
+t2$pred <- 1/(1+exp(-xgboost:::predict.xgb.Booster(xgb_1111,tdata,type="response"))) 
+
