@@ -25,3 +25,10 @@ t2$pred <- 1/(1+exp(-xgboost:::predict.xgb.Booster(xgb_1111,tdata,type="response
 xgb_1111 <- xgb.load(readBin("../xgb_0821.rawfile",what=raw(),n=20989)) 
 t2$pred <- 1/(1+exp(-xgboost:::predict.xgb.Booster(xgb_1111,tdata,type="response"))) 
 
+## try rds ??
+(r1 <- readRDS(file="../xgb_0821.rds"))
+t2$pred <- 1/(1+exp(-xgboost:::predict.xgb.Booster(r1,tdata,type="response"))) 
+# [23:24:33] amalgamation/../src/learner.cc:506: Check failed: mparam_.num_feature != 0 (0 vs. 0) : 0 feature is supplied.  Are you using raw Booster interface?
+t2$pred <- 1/(1+exp(-xgboost:::predict.xgb.Booster(xgb.Booster.complete(r1),tdata,type="response"))) 
+#ror in xgboost:::predict.xgb.Booster(xgb.Booster.complete(r1), tdata,  : 
+# [23:23:49] amalgamation/../src/learner.cc:506: Check failed: mparam_.num_feature != 0 (0 vs. 0) : 0 feature is supplied.  Are you using raw Booster interface?

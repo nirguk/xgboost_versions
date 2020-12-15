@@ -28,3 +28,7 @@ raw <- xgboost::xgb.save.raw(model = xgb_0821)
 (length_raw <- length(raw))
 #20989
 writeBin(raw,"../xgb_0821.rawfile")
+
+### save as RDS
+
+(saveRDS(xgb_0821,file = "xgb_0821.rds"))
